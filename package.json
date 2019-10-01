@@ -10,5 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "tingle.js": "^0.15.1"
+  },
+  "devDependencies": {
+    "cssnano": "^4.1.10"
   }
 }
