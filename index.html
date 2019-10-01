@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="node_modules/tingle.js/dist/tingle.min.css" />
+
+    <link rel="stylesheet" href="style.css" />
+    <title>The module tutorial</title>
+  </head>
+  <body>
+    <header>
+      <h1>A simple module tutorial by Iga Naskręt</h1>
+      <h2>Tingle.js</h2>
+    </header>
+    <main>
+      <h1>
+        Step by step tutorial for people who kinda know what they're doing
+      </h1>
+      <ol>
+        <li>Open a new folder and create a new file <code>index.html</code></li>
+        <li>Open terminal and run a command <code> npm init </code></li>
+        <li>
+          Unless you want to add some information, press enter through the
+          initialization
+        </li>
+        <li>Then, run a command <code> npm install tingle.js --save </code></li>
+        <li>
+          Link tingle's js and css files to your html
+          <code>
+            <pre>
+                &lt;link rel="stylesheet" href="node_modules/tingle.js/dist/tingle.min.css" /&gt;
+                &lt;script src="node_modules/tingle.js/dist/tingle.js"&gt; &lt; /script &gt;</pre
+            >
+          </code>
+        </li>
+        <li>
+          Create a js file, for example tingle.js, and link it to your html file
+        </li>
+        <li>
+          Import tingle by writing <code>import tingle from "tingle.js";</code>
+        </li>
+        <li>
+          The pattern for creating a modal looks like this:
+          <code>
+            <pre>
+         // instanciate new modal
+        var modal = new tingle.modal({
+            footer: true,
+            stickyFooter: false,
+            closeMethods: ['overlay', 'button', 'escape'],
+            closeLabel: "Close",
+            cssClass: ['custom-class-1'],
+            onOpen: function() {
+                console.log('modal open');
+            },
+            onClose: function() {
+                console.log('modal closed');
+            },
+            beforeClose: function() {
+            // here's goes some logic
+            // e.g. save content before closing the modal
+            return true; // close the modal
+            return false; // nothing happens
+            }
+        });
+                    
+        // set content
+        modal.setContent();
+                    
+        // add a button
+        modal.addFooterBtn('Button label', 'tingle-btn tingle-btn--primary', function() {
+            // here goes some logic
+            modal.close();
+        });
+                    
+        // add another button
+        modal.addFooterBtn('Dangerous action !', 'tingle-btn tingle-btn--danger', function() {
+            // here goes some logic
+            modal.close();
+        });
+                    
+        // open modal
+        modal.open();
+                    
+        // close modal
+        modal.close();
+        </pre
+            >
+          </code>
+          Looks complicated? Don't worry, just paste it into your js file and
+          we'll figure it all out.
+        </li>
+        <li>
+          At first, find the line of code which sets content and add some text
+          there, for example
+          <code
+            ><pre>
+        // set content
+        modal.setContent("&lt;h1&gt;This is my content&lt;/h1&gt;");</pre
+            ></code
+          >
+        </li>
+        <li>
+          Create a button for opening the modal and add some code in js, that
+          runs the funtion <code>modal.open()</code> when the button is clicked.
+          <button class="open-modal">Open modal</button>
+        </li>
+        <li>
+          Great! You can now see your modal. It looks pretty, but you can change
+          some styling. I did that by creating my own css file and conecting it
+          to the <code> index.html</code> after the <code>tingle.min.css</code>
+          one
+        </li>
+        <li>
+          You can grab the whole modal by your custom class (which you can
+          create in <code>var modal</code>) or by class
+          <code>tingle.modal</code>
+        </li>
+        <li>
+          To style the buttons use:
+          <code>tingle-btn </code> in general,
+          <code>
+            tingle-modal__close
+          </code>
+          for the close button, <code>tingle-btn--primary</code> and
+          <code>tingle-btn--danger</code> for the footer buttons. In js, you can
+          also disable the footer (by giving it the value of <code>false</code>)
+          and add/remove footer buttons.
+        </li>
+        <li>That's it! Play around with the modal!</li>
+      </ol>
+    </main>
+  </body>
+  <script src="node_modules/tingle.js/dist/tingle.js"></script>
+  <script src="tingle.js"></script>
+</html>
